@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fetch Demo</title>
+    <!-- <script src="compute.js"></script> -->
+</head>
+
+<body>
+    <h2> Nandini Kandi computes </h2>
+
+    <input id='inpOne' type="number">
+    <input id='inpTwo' type="number">
+
+    <button onclick="fetchResponse()"> Remote Compute </button>
+
+    <div id="result">
+        Your result will be displayed here.
+    </div>
+
+    <script>
+        function fetchResponse() {
+            var x = document.getElementById("inpOne").value
+            var y = document.getElementById("inpTwo").value
+            let response = fetch("http://127.0.0.1:3001/?x=" + x + "&y=" + y)
+                .then((response) => { return response.text() })
+                .then(
+                    (text) => {
+
+                        console.log(text)
+
+                        document.getElementById("result").innerHTML = text
+
+                    })
+                .catch(
+                    (text) => {
+
+                        console.log(text)
+
+                        document.getElementById("result").innerHTML = text
+                    });
+        }
+    </script>
+
+
+</body>
+
+</html>
